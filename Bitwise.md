@@ -1,0 +1,13 @@
+- AND
+  - useful for clearing bits
+    - AND with zero = 0
+    - AND with one = no change
+- OR
+  - useful for setting bits
+  - OR with zero = no change
+  - OR with one = 1
+- Not
+  - unary operation -- one argument
+  - flips every bit
+- XOR
+- 
