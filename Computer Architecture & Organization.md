@@ -185,12 +185,141 @@ Compiler infers
 	- Storage of information (state)
 
 
+
+
 Instruction Processing: 6 phases
 ISA:
 	- Format of Instruction
 
-LC-3
-CPU: 8 registers, 16 bits
-Memory: 2^16 x 16
-I/O: Keyboard
+# LC-3
+## Specifications
+- CPU: 8 registers - R0-R7, 16 bits
+- Memory: 2^16 x 16
+- I/O: Keyboard
+
+# Data Movement Instructions
+
+| Opcodes | Addressing Modes |
+| :---: | :---: |
+| LD | Pc-relation Mode, Mem Addr <- PC + Offset |
+| ST | Store Stores to memory Location|
+| LDI | Load Indirect, Like a pointer|
+| STI | Store Indirect |
+| LDR | Addr <- Base + Offset |
+| STR | Base + offset (Regiser + Offset) |
+| LEA | Load Effective Address (Immediate) | 
+
+# Memory Mapping
+- 0-EFFF Memory
+- F000-FFFF Device Registers
+
+### Load Effective Address
+- Computes address like PC-relative (PC plus signed offset)
+  and stores the result into a register
+	- Note: The __address__ is stored in the register, not the contexts of the memory location
+
+## Workarounds
+- Getting OR from ADD, AND, NOT
+	- NOT( NOT(x) AND NOT(Y) )
+
+## Memory
+- 1 nibble <=> 1 Hex Digit
+	- 4 bits $\rightarrow$ $2^4(16)$
+- 14 bits $\rightarrow$ $2^14$ values (Addresses)
+- $2^\text{18}$
+
+
+# Assembly Language:
+- Structure
+	- Label Opcode Operands ; Comments
+- Three kinds of command lines in the program
+	- 1: Assembly instruction
+	- 2: Directive
+		- Instruction to Assembler
+	- 3: Comment
+
+```assembly
+ADD R1, R1, R3
+ADD R1, R1, #3
+LD R6, NUMBER
+BRz LOOP
+
+
+```
+
+
+# Chapter 8
+
+## Transfer Timing
+- I/O events generally happen much slower than CPU cycles
+- Synchronous
+	- data suplied at a fixed, predictable rate
+	- CPU reads/writes every X cycles
+- Asynchronous
+	- data rate less predictable
+	- CPU mush __synchronize__ with device, so that it doesn't miss data or write too quickly
+
+## Transfer Control
+- Who determines when the next data transfer occurs?
+- Polling
+	- CPU keeps checking status register until __new data__ arrives OR __device ready__ for next data
+  	- > "Are we there yet? Are we there yet? Are we there yet?"
+- Interrupts
+	- Device sends a special signmal to CPU when __new data__ arrives OR __device ready__ for next data
+	- CPU can be performing other tasks instead of polling device
+	- > "Wake me when we get there."
+
+## LC-3
+- Memory-mapped I/O
+
+### Asynchronous devices
+
+### Polling and Interrupts
+
+# 8.1 I/O Basics
+## 8.1.1 I/O Device Registers
+- Read/Write device Registers => Perform I/O
+## 8.1.2 ~ 4
+- Three design issues
+    - Addressing Device Registers
+    - Synchronoization
+    - Feedback
+
+
+- Control/Status Registers
+    - CPU tells device what to do -- write to control register
+    - CPU checks whether task is done -- read status register
+- Data Registers
+    - CPu transfers data to/from device
+- Device electronics
+    - performs actual operation
+    - pixels to screen, bits to/from disk, characters from keyboard
+
+# Programming Interface
+- How are device registers identified?
+    - Memory-mapped vs. special instructions
+- How is timing of transfer managed?
+    - Asynchronous vs. synchronous
+- Who controls tranfer?
+    - CPU or Device
+ 
+# Memory-Mapped vs. I/O Instructions
+- Instructions
+    - designate opcode(s) for I/O
+    - register and operation encoded in instruction
+
+- Memory-mapped
+    - assign a memory address to each device register
+    - use data movement instructions (LD/ST) for control and data transfer
+- Memory-mapped I/O
+
+| Location | I/O Register | Function | 
+| --- | --- | --- |
+| xFE00 | Keyboard Status Reg (KBSR) | Bit [15] is one when keyboard has received a new character |
+
+
+
+
+
+
 

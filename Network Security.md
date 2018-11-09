@@ -101,7 +101,7 @@ Ethernet Frame Structure
 * Domain Name Registry Operator
 	* Maintaining domain name registry (database)
 * Domain Name Registrar
-	* Agent of _Domain name registry Operator_ 
+	* Agent of _Domain name registry Operator_, managin the reservation of domain names
 
 # Terms
 - **Regional Internet Registry**: organization
@@ -110,3 +110,56 @@ Ethernet Frame Structure
 - **Domain Name Registrar**: organization
 - **Domain Name Registrant**: user/assignee
 
+
+# Recon
+- Social Engineering
+- Web
+- Whois DB (web interface)
+- DNS server (command-line interface)
+	- DB: hostname -> IP addr, other info.
+	- Protocol:
+
+
+# Gaining Access
+- Using
+	- System Attacking
+	- Network Attacking
+
+# Sniffing on LAN
+- 1: Hub-based LAN
+	- Passive sniffing: 
+		- Listen Silently
+- 2: Switch-based LAN:
+	- Active Sniffing:
+		- Inject traffic then listen
+	- Techniques
+		- 1: MAC Flooding
+			- Mess up switch and make it behave like a hub
+		- 2: ARP spoofing
+			- Mess up IP addr to MAC addr translation
+		- 3: Port Stealing
+			- Mess up MAC addr to switch port translation
+		- 4: DNS Spoofing
+			- Mess up hostname to IP addr translation
+		- 5: Monkey-In-The-Middle (AKA Man-In-The-Middle)
+			- Attacker 
+
+- 1: Mac Flooding:
+- 2: ARP spoofing:
+- 3: Port Stealing:
+- 4: DNS Spoofing:
+- 5: Man in the middle:
+
+- 1: Encrypt data
+- 2: Pay attention to warning message on certificate
+- 3: Replace hub with switch
+
+```bash
+ifconfig | grep inet | grep -o '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*' | grep "10"
+```
+
+
+
+# Keywords
+- noarchive:
+	- do not save a copy in google cache

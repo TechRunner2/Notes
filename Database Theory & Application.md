@@ -150,3 +150,77 @@ from (table)
 //Multiple table query
 Join 
 ```
+
+# SQL images
+- Command-line Clinet
+- image.sql
+```sql
+CREATE TABLE tbl_snack(
+	no INT PRIMARY KEY NOT NULL,
+	name VARCHAR(45) NOT NULL,
+	img BLOB NOT NULL
+);
+```
+
+```sql
+INSERT INTO tbl_snack
+	VALUES(1, "coke", "C:\SQL_EX\coke.jpg");
+```
+
+```sql
+INSERT INTO tbl_snack
+	VALUES(2, "taco", "C:\SQL_EX\taco.jpg");
+```
+
+```sql 
+INSERT INTO tbl_snack
+	Values(3, "hamburger", "C:\SQL_EX\hamburger.jpg");
+```
+## Enumeration
+### SET
+
+```sql
+CREATE TABLE setTest(
+	attrib SET('bold', 'italic', 'underline')
+);
+
+INSERT INTO setTest(attrib)
+	VALUES('bold');
+
+INSERT INTO setTest(attrib)
+	VALUES('bold', 'italic');
+```
+### ENUM
+```sql
+Create table enumTest(
+	Color ENUM('red', 'green', 'blue')
+);
+
+INSERT INTO enumTest(color) VALUES('red');
+INSERT INTO enumTest(color) VALUES('gray');//Wrong
+INSERT INTO enumTest(color) VALUES('red', 'green');//Wrong
+```
+
+
+# Backup database in workbench
+
+- Environments
+	- CLI
+		```shell
+		mysqldump -u root -p $database > $database.sql
+		```
+	- GUI
+
+# Relationships
+- 1:1
+	- One to one
+- 1:N
+	- One to Many
+- N:N
+	- Many to Many
+
+## HAS-A Relationships
+- The relationships we have been discussing are known as HAS-A relationships:
+	- Each entity instance **has a** relationship with each other
+
+
